@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/mainLayout}">
+<div layout:fragment="content">
+
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <div class="col-2">
+                <div th:replace="/fragments/navbar :: navbar"></div>
+            </div>
+
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-2">글번호</div>
+                    <div class="col-2">서버</div>
+                    <div class="col">제목</div>
+                    <div class="col-2">작성자</div>
+                    <div class="col-3">글쓴날</div>
+                </div>
+                <th:block th:each="article : ${list}">
+                    <div class="row p-1">
+                        <div class="col-2" th:text="${article.getArticleId()}">게시글 번호</div>
+                        <div class="col-2" th:text="${article.getServer()}">서버</div>
+                        <div class="col text-left pr-1"><a th:href="@{'/articles/' + ${article.getArticleId()}}">
+                            <div th:text="${article.getTitle()}">제목</div>
+                        </a>
+                        </div>
+                        <div class="col-2" th:text="${article.getUser().getName()}">작성자</div>
+                        <div class="col-3" th:text="${article.getCreatedAt()}">글쓴날</div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+        <div th:replace="/fragments/pagination :: pagination"></div>
+    </div>
+
+</div>
+</div>
+
+</html>

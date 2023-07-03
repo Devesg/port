@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/layouts/mainLayout}"
+>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col">아이디</div>
+            <div class="col">이름</div>
+            <div class="col">권한</div>
+            <div class="col">등록일자</div>
+            <div class="col">수정일자</div>
+            <div class="col">회원삭제</div>
+        </div>
+
+        <tbody>
+        <tr th:each="article, i: ${list}">
+            <div class="row mb-2">
+                <div class="col" th:text="${article.email}">ID1</div>
+                <div class="col" th:text="${article.name}">회원1</div>
+                <div class="col" th:text="${article.role}">MEMBER</div>
+                <div class="col" th:text="${article.createdAt}">2022.07.19 08:29</div>
+                <div class="col" th:text="${article.updatedAt}">2022.07.19 08:29</div>
+                <div class="col"><a th:href="@{'/users/delete/' + ${article.userId}}">삭제</a></div>
+            </div>
+            </td>
+        </tr>
+        </tbody>
+    </div>
+    <div th:replace="/fragments/pagination :: pagination"></div>
+</div>
+</html>

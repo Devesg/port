@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/mainLayout}">
+
+<th:block layout:fragment="css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+
+    <form th:action="@{/articles/write}" method="post">
+
+        <label for="users">작성자</label>
+        <input type="text" id="name" name="name" th:value="${#authentication.principal.username}" readonly>
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" placeholder="제목을 입력해주세요.">
+
+        <label for="server">SERVER</label>
+        <select id="server" name="server">
+            <option value="루페온">루페온</option>
+            <option value="아만">아만</option>
+            <option value="카단">카단</option>
+            <option value="카제로스">카제로스</option>
+            <option value="카마인">카마인</option>
+            <option value="아브렐슈드">아브렐슈드</option>
+            <option value="실리안">실리안</option>
+            <option value="니나브">니나브</option>
+        </select>
+
+        <label for="subject">content</label>
+        <textarea id="content" name="content" placeholder="Write something.." style="height:200px"></textarea>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
+
+</html>

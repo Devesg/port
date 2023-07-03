@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/mainLayout}">
+
+<th:block layout:fragment="css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+
+    <div class="container">
+
+        <div class="col text-left pr-1" style="border-bottom-style: groove;">
+            <span class="btn btn-primary rounded-pill align-text-bottom" th:text="${article.server}">서버</span>
+            <span class="font-weight-bold" style="font-size: 40px" th:text="${article.title}"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                 style="width: 20px;">
+                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                <path fill-rule="evenodd"
+                      d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                      clip-rule="evenodd"></path>
+            </svg>
+            <span th:text="${article.view}">조회수</span>
+        </div>
+        <div class="col text-left pr-3">
+            <div style="font-size: 20px">
+                <span class="text-right" th:text="${article.getCreatedAt}">작성일</span>
+                <span th:text="${article.getUser.getName}"></span>
+            </div>
+            <div class="col text-left pr-5" style="font-size: 30px">
+                <p class="pt-3" th:text="${article.content}">dd</p>
+            </div>
+
+        </div>
+        <a type="button" class="btn btn-primary float-right" href="/articles/list">돌아가기</a>
+        <a type="button" class="btn btn-secondary float-right"
+           th:href="@{'/articles/modify/' + ${article.getArticleId()}}"
+           th:if="${#authentication.principal.username == article.user.name}">수정</a>
+        <a type="button" class="btn btn-danger float-right" th:href="@{'/articles/delete/' + ${article.getArticleId()}}"
+           th:if="${#authentication.principal.username == article.user.name}">삭제</a>
+    </div>
+
+    <!-- Back to list button -->
+</div>
+
+</html>

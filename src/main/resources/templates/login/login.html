@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/mainLayout}">
+<th:block layout:fragment="css">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            var errorMessage = [[${ errorMessage }]];
+            if (errorMessage != null) {
+                alert(errorMessage);
+            }
+        });
+    </script>
+</th:block>
+
+<body class="text-center">
+<div layout:fragment="content">
+
+    <form action="/users/login" method="post">
+        <h1 class="h3 mb-3 fw-normal">로그인</h1>
+        <div>
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div>
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required autocomplete="off">
+        </div>
+
+        <button type="submit" class="w-100 btn btn-lg btn-primary">로그인</button>
+    </form>
+</div>
+</body>
+
+</html>

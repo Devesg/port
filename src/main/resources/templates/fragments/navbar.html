@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<nav class='animated bounceInDown bg-white' th:fragment="navbar">
+    <th:block layout:fragment="css">
+    <style>
+        nav {
+            position: relative;
+            width: 200px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px 15px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            -webkit-transition: 0.2s linear;
+            -moz-transition: 0.2s linear;
+            -ms-transition: 0.2s linear;
+            -o-transition: 0.2s linear;
+            transition: 0.2s linear;
+        }
+
+        nav ul li a:hover {
+            background: #a5d2ee;
+            color: #fff;
+        }
+
+        nav ul li a .fa {
+            width: 16px;
+            text-align: center;
+            margin-right: 5px;
+            float: right;
+        }
+
+        nav ul ul {
+            background: rgba(255, 255, 255);
+        }
+
+        nav ul li ul li a {
+
+            border-left: 4px solid transparent;
+            padding: 10px 20px;
+        }
+
+        nav ul li ul li a:hover {
+
+            border-left: 4px solid #3498db;
+        }
+
+    </style>
+</th:block>
+
+    <ul class="text-center">
+        <li><a th:href="@{'/articles/list'}"><h5><b>전체</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=루페온'}"><h5><b>루페온</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=아만'}"><h5><b>아만</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=카단'}"><h5><b>카단</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=카제로스'}"><h5><b>카제로스</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=카마인'}"><h5><b>카마인</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=아브렐슈드'}"><h5><b>아브렐슈드</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=실리안'}"><h5><b>실리안</b></h5></a></li>
+        <li><a th:href="@{'/articles/list?server=니나브'}"><h5><b>니나브</b></h5></a></li>
+        <li></li>
+        <li><a class="write" th:href="@{'/articles/write'}"><h5><b>글쓰기</b></h5></a></li>
+    </ul>
+    
+</nav>
+</div>
+
+<script>
+    $('.sub-menu ul').hide();
+    $(".sub-menu a").click(function () {
+        $(this).parent(".sub-menu").children("ul").slideToggle("100");
+        $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+    });
+</script>
+
+</html>
